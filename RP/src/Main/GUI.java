@@ -1,9 +1,7 @@
 package Main;
 
-import java.awt.Panel;
 import ParticleSwarm.*;
 import java.util.ArrayList;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -14,23 +12,13 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.text.Text;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.BorderWidths;
-
 import GeneticAlgorithm.*;
 
-import Function.Functions;
 
 public class GUI extends Application{
 
@@ -48,12 +36,6 @@ public class GUI extends Application{
 	Button btPSOStartIterations = new Button("Solve");
 	
 	double globalMin;
-
-	
-	//public static final double DEFAULT_INERTIA = 0.729844;
-    //public static final double DEFAULT_COGNITIVE = 1.496180; // Cognitive component.
-    //public static final double DEFAULT_SOCIAL = 1.496180; // Social component.
-    
 
 	int currentFunction = -1;
 	
@@ -74,7 +56,7 @@ public class GUI extends Application{
 		PSOoptionsPane.setLayoutY(10);
 		PSOoptionsPane.setPrefHeight(200);
 		PSOoptionsPane.setPrefWidth(300);
-		PSOoptionsPane.setStyle("-fx-background-color: '#eaeaea';");
+		PSOoptionsPane.setStyle("-fx-background-color: '#dbdbdb';");
 		
 		Text PSOTitle = new Text("Particle Swarm Optimization");
 		PSOTitle.setLayoutX(10);
@@ -132,7 +114,7 @@ public class GUI extends Application{
 		GAoptionsPane.setLayoutY(220);
 		GAoptionsPane.setPrefHeight(200);
 		GAoptionsPane.setPrefWidth(300);
-		GAoptionsPane.setStyle("-fx-background-color: '#eaeaea';");
+		GAoptionsPane.setStyle("-fx-background-color: '#dbdbdb';");
 		
 		Text GATitle = new Text("Genetic Algorithm");
 		GATitle.setLayoutX(10);
@@ -188,7 +170,7 @@ public class GUI extends Application{
 		FunctionPane.setLayoutY(440);
 		FunctionPane.setPrefHeight(200);
 		FunctionPane.setPrefWidth(300);
-		FunctionPane.setStyle("-fx-background-color: '#eaeaea';");
+		FunctionPane.setStyle("-fx-background-color: '#dbdbdb';");
 		
 		Text FunctionTitle = new Text("Function");
 		FunctionTitle.setLayoutX(10);
@@ -225,7 +207,7 @@ public class GUI extends Application{
 		DisplayPane.setLayoutY(660);
 		DisplayPane.setPrefHeight(100);
 		DisplayPane.setPrefWidth(750);
-		DisplayPane.setStyle("-fx-background-color: '#eaeaea';");
+		DisplayPane.setStyle("-fx-background-color: '#dbdbdb';");
 		
 		Text GAiterationtxt = new Text("GA iterations: ");
 		GAiterationtxt.setLayoutX(10);
@@ -432,10 +414,8 @@ public class GUI extends Application{
 				
 				timeline.getKeyFrames().add(keyframe);
 				timeline.play();
-	    		
 	    	}
 
-	    	
 		});
 		
 		//PSO first
@@ -443,55 +423,8 @@ public class GUI extends Application{
 	    	@Override
 	    	public void handle(ActionEvent event)
 	    	{
-	    		bestSolutionPane.getChildren().clear();
-	    		btPSOStartIterations.setDisable(true);
-	    		
-	    		System.out.println(currentFunction);
-	    		Swarm swarm = new Swarm(Integer.parseInt(tfPSOPopulation.getText()), currentFunction, Double.parseDouble(tfPSOInertia.getText()), Double.parseDouble(tfPSOCognitive.getText()), Double.parseDouble(tfPSOSocial.getText()));
-	    		
-	    		timeline = new Timeline();
-				timeline.setCycleCount((Integer.parseInt(tfPSOiterations.getText())));
-				n = 0;
-				KeyFrame keyframe = new KeyFrame(Duration.millis(75), action-> 
-				{
-					
-					bestSolutionPane.getChildren().clear();
-					n++;
-					PSOiterationstxt.setText("PSO Iteration: " + n);
-					
-					PSOX.setText("X: " + swarm.getBestPosition().getX());
-					PSOY.setText("Y: " + swarm.bestPositionsY());
-					
-					PSOGBEST.setText("Global best: " + swarm.getBestPosition().getX());
-					
-					
-					if(n == (Integer.parseInt(tfGAiterations.getText())))
-			    		btPSOStartIterations.setDisable(false);
-					
-					for(int i = 0; i < swarm.getParticles().length; i++)
-					{
-						Circle tempcircle = new Circle();
-						tempcircle.setRadius(4);
-						tempcircle.setFill(Color.RED);
-						tempcircle.setLayoutX(260+swarm.getParticles()[i].getPosition().getX()*90);
-						tempcircle.setLayoutY(530+swarm.getParticles()[i].eval()*-90);
-						bestSolutionPane.getChildren().add(tempcircle);
-					}
-					
-					swarm.updateVelocities();
-					
-					if(swarm.getEpoch() == (Integer.parseInt(tfGAiterations.getText())))
-					{
-						timeline.stop();
-					}
-				
-				});
-				
-				timeline.getKeyFrames().add(keyframe);
-				timeline.play();	
-	    	}
 
-	    	
+	    	}
 		});
 
 
@@ -519,6 +452,15 @@ public class GUI extends Application{
 		    		bestSolutionPane.getChildren().clear();
 		    		
 		    		FunctionGlobalMinumum.setText("Global Min: x = " + globalMinumums[ii]);
+		    		
+		    		
+					PSOiterationstxt.setText("PSO Iterations: ");
+					PSOX.setText("X: ");
+					PSOY.setText("Y: ");
+					
+					GAiterationtxt.setText("GA Iterations: ");
+					GAX.setText("X: ");
+					GAY.setText("Y: ");
 
 		    		for(int i = 0; i < btFunctionArray.length; i++)
 			    		btFunctionArray[i].setStyle("-fx-background-color: 'white'; -fx-text-fill: 'black'; -fx-border-width: 0.3; -fx-border-style: solid;");

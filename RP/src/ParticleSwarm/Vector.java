@@ -70,33 +70,33 @@ public class Vector
         }
     }
 
-    private double mag () {
+    private double mag () 
+    {
         return Math.sqrt(x*x + y*y);
     }
 
-    void limit (double l) {
+    void limit (double l) 
+    {
         limit = l;
         limit();
     }
 
-    private void limit () {
+    private void limit () 
+    {
         double m = mag();
-        if (m > limit) {
+        if (m > limit) 
+        {
             double ratio = m / limit;
             x /= ratio;
             y /= ratio;
         }
     }
 
-    public Vector clone () {
-        return new Vector(x, y);
-}
-
-    public void set(double x, double y)
+    public Vector clone () 
     {
-    	this.x = x;
-    	this.y = y;
+        return new Vector(x, y);
     }
+
     
     public void set(double x)
     {

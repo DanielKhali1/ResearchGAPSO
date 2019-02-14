@@ -10,9 +10,6 @@ public class Swarm
     private double inertia, cognitiveComponent, socialComponent;
     Vector bestPosition;
     private double bestEval;
-    public static final double DEFAULT_INERTIA = 0.729844;
-    public static final double DEFAULT_COGNITIVE = 1.496180; // Cognitive component.
-    public static final double DEFAULT_SOCIAL = 1.496180; // Social component.
     
     private double beginRange, endRange;
     private static final double DEFAULT_BEGIN_RANGE = -10;
@@ -77,17 +74,12 @@ public class Swarm
         double r1 = random.nextDouble();
         double r2 = random.nextDouble();
 
-        // The first product of the formula.
         Vector newVelocity = oldVelocity.clone();
         newVelocity.mul(inertia);
-
-        // The second product of the formula.
         pBest.sub(pos);
         pBest.mul(cognitiveComponent);
         pBest.mul(r1);
         newVelocity.add(pBest);
-
-        // The third product of the formula.
         gBest.sub(pos);
         gBest.mul(socialComponent);
         gBest.mul(r2);
