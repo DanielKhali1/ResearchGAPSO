@@ -4,12 +4,11 @@ public class Functions
 {    
     public static double firstFunction(double x)
     {
-        /*if(x < -3 || x > 3)
+        if(x < 0)
         {
-            System.out.println("ERROR OUT OF BOUNDS");
             return Integer.MAX_VALUE;
         }
-        else*/
+        else
             return Math.pow(x, (x+5)/4)+Math.cos(9*x*x-Math.sin(x));
     }
     

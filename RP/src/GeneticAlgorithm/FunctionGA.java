@@ -99,12 +99,12 @@ public class FunctionGA extends GeneticAlgorithm
     	double answer = 0;
     	
     	answer += Integer.parseInt(chromosome.substring(0, chromosome.indexOf('.')),2);
-    	answer += .001 * Integer.parseInt(chromosome.substring(chromosome.indexOf('.')+1),2);
-    	answer -= 3;
-    	if(answer > 3)
-    		return 3;
-    	if(answer < -3)
-    		return -3;
+    	answer += .0001 * Integer.parseInt(chromosome.substring(chromosome.indexOf('.')+1),2);
+    	answer -= 10;
+    	if(answer > 10)
+    		return 10;
+    	if(answer < -10)
+    		return -10;
     	return answer;
 	}
 	

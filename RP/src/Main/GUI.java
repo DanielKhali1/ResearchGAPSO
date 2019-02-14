@@ -46,6 +46,8 @@ public class GUI extends Application{
 	TextField tfPSOCognitive = new TextField("1.496180");
 	TextField tfPSOSocial = new TextField("1.496180");
 	Button btPSOStartIterations = new Button("Solve");
+	
+	double globalMin;
 
 	
 	//public static final double DEFAULT_INERTIA = 0.729844;
@@ -218,11 +220,6 @@ public class GUI extends Application{
 		Button[] btFunctionArray = {btFunction1, btFunction2, btFunction3, btFunction4};
 		
 		
-		
-		
-
-		
-		
 		Pane DisplayPane = new Pane();
 		DisplayPane.setLayoutX(10);
 		DisplayPane.setLayoutY(660);
@@ -263,6 +260,11 @@ public class GUI extends Application{
 		Functiontxt.setLayoutX(410);
 		Functiontxt.setLayoutY(10);
 		
+		Text FunctionGlobalMinumum = new Text("Global Min: x = " + globalMin);
+		FunctionGlobalMinumum.setLayoutX(410);
+		FunctionGlobalMinumum.setLayoutY(30);
+		
+		DisplayPane.getChildren().add(FunctionGlobalMinumum);
 		DisplayPane.getChildren().add(PSOGBEST);
 		DisplayPane.getChildren().add(Functiontxt);
 		DisplayPane.getChildren().add(GAX);
@@ -404,10 +406,7 @@ public class GUI extends Application{
 					PSOiterationstxt.setText("PSO Iteration: " + n);
 					
 					PSOX.setText("X: " + swarm.getBestPosition().getX());
-					PSOY.setText("Y: " + swarm.bestPositionsY());
-
-					//PSOY.setText("Y: " + swarm.ds();
-					
+					PSOY.setText("Y: " + swarm.bestPositionsY());					
 					
 					if(n == (Integer.parseInt(tfPSOiterations.getText())))
 			    		btPSOStartIterations.setDisable(false);
@@ -516,7 +515,10 @@ public class GUI extends Application{
 		    		{
 		    			
 		    		}
+		    		double [] globalMinumums = {0.6351, 1.5489, 0.1428, 0};
 		    		bestSolutionPane.getChildren().clear();
+		    		
+		    		FunctionGlobalMinumum.setText("Global Min: x = " + globalMinumums[ii]);
 
 		    		for(int i = 0; i < btFunctionArray.length; i++)
 			    		btFunctionArray[i].setStyle("-fx-background-color: 'white'; -fx-text-fill: 'black'; -fx-border-width: 0.3; -fx-border-style: solid;");
