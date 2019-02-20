@@ -30,7 +30,7 @@ public class Manager
 		{
 			for(int j = 0; j < 5; j++)
 			{
-				GAfirstPSO(numberOfIterations, new Functions(i,-10, 10, -1));
+				GAfirstPSO(numberOfIterations, new Functions(i,-10.0, 10.0, -1));
 				numberOfIterations += 20;
 			}
 			function += 1;
@@ -57,7 +57,7 @@ public class Manager
 			}
 			
 			System.out.println("moving to swarm");
-			Functions function2 = new Functions(function.getFunctionNumber(), geneticAlgorithm.ChromosomeToDecimalValue(geneticAlgorithm.getBestChromosome())-1, geneticAlgorithm.ChromosomeToDecimalValue(geneticAlgorithm.getBestChromosome())+1, -1);
+			Functions function2 = new Functions(function.getFunctionNumber(), geneticAlgorithm.ChromosomeToDecimalValue(geneticAlgorithm.getBestChromosome())-2, geneticAlgorithm.ChromosomeToDecimalValue(geneticAlgorithm.getBestChromosome())+2, -1);
 						
 			Swarm swarm = new Swarm(PSOPopulation, function2, PSOInertia, PSOCognitive, PSOSocial);
 			
