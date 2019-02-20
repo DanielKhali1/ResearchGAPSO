@@ -3,9 +3,9 @@ import Function.Functions;
 
 public class FunctionGA extends GeneticAlgorithm 
 {
-	int function;
+	Functions function;
 	
-	public FunctionGA(int populationSize, double mutationRate, int function)
+	public FunctionGA(int populationSize, double mutationRate, Functions function)
 	{
 		super(populationSize, mutationRate);
 		this.function = function;
@@ -14,19 +14,8 @@ public class FunctionGA extends GeneticAlgorithm
 	@Override
 	public double getFitness(String chromosome) 
 	{
-		double fitness = 0;
-		switch(function)
-		{
-			case 1: fitness = Functions.firstFunction(ChromosomeToDecimalValue(chromosome));
-				break;
-			case 2: fitness = Functions.secondFunction(ChromosomeToDecimalValue(chromosome));
-				break;
-			case 3: fitness = Functions.thirdFunction(ChromosomeToDecimalValue(chromosome));
-				break;
-			case 4: fitness = Functions.fourthFunction(ChromosomeToDecimalValue(chromosome));
-				break;
-		}
-		return fitness;
+		function.setX(ChromosomeToDecimalValue(chromosome));
+		return function.getY();
 	}
 
 	@Override
