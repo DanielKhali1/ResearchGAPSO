@@ -14,13 +14,12 @@ public class Swarm
     private double beginRange, endRange;
     private static final double DEFAULT_BEGIN_RANGE = -10;
     private static final double DEFAULT_END_RANGE = 10;
+	private Functions function;
     Particle[] particles;
 
-    int function;
-	
-    public Swarm (int particles1, int function, double inertia, double cognitiveComponent, double socialComponent) {
+    public Swarm (int particles1, Functions function, double inertia, double cognitiveComponent, double socialComponent) {
         this.numOfParticles = particles1;
-        this.function = function;
+		this.function = function;
         double infinity = Double.POSITIVE_INFINITY;
         bestPosition = new Vector(infinity, infinity);
         bestEval = Double.POSITIVE_INFINITY;
@@ -91,21 +90,8 @@ public class Swarm
     
     public double bestPositionsY()
     {    	
-    	double bestY = -1;
-    	
-		switch(function)
-		{
-			case 1: bestY = Functions.firstFunction(bestPosition.getX());
-				break;
-			case 2: bestY = Functions.secondFunction(bestPosition.getX());
-				break;
-			case 3: bestY = Functions.thirdFunction(bestPosition.getX());
-				break;
-			case 4: bestY = Functions.fourthFunction(bestPosition.getX());
-				break;
-		}
-		
-		return bestY;
+		function.setX(bestPosition.getX());
+		return function.getY();
     }
     
     public Particle[] getParticles() {return particles;}

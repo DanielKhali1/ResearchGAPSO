@@ -9,9 +9,9 @@ public class Particle
 	private Vector Velocity;
 	private Vector BestPosition;
 	private double bestEval;
-	private int function; 
+	private Functions function;
 	
-	public Particle(double beginRange, double endRange, int function)
+	public Particle(double beginRange, double endRange, Functions function)
 	{
 		Position = new Vector();
 		Velocity = new Vector();
@@ -26,20 +26,8 @@ public class Particle
 	
 	public double eval()
 	{
-		double fitness = 0;
-		switch(function)
-		{
-			case 1: fitness = Functions.firstFunction(Position.getX());
-				break;
-			case 2: fitness = Functions.secondFunction(Position.getX());
-				break;
-			case 3: fitness = Functions.thirdFunction(Position.getX());
-				break;
-			case 4: fitness = Functions.fourthFunction(Position.getX());
-				break;
-		}
-		//System.out.println(Position.getX());
-		return fitness;
+		function.setX(Position.getX());
+		return function.getY();
 	}
 	
 	private void setRandomPosition(double beginningRange, double endingRange)
