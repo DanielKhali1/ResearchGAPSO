@@ -26,6 +26,11 @@ public class Functions
 		this.x = x;
 	}
 	
+	public double getX()
+	{
+		return x;
+	}
+	
 	public double getY()
 	{
 		double ret = 0;

@@ -2,6 +2,11 @@ package Main;
 
 import ParticleSwarm.*;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Arrays;
 
 import Function.*;
@@ -19,27 +24,40 @@ public class Manager
 	//GeneticAlgorithm
 	final static int GAPopulation = 50;
 	final static double MutationRate = .01;
+	static String data = "";
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws Exception
 	{
 		int numberOfIterations = 20;
 		int function = 1;
 		
+
+        data += "Function,First,Iterations,GA%,PSO%,X,Y,distance\n";
 		
-		for(int i = 0; i < 4; i++)
+		for(int i = 1; i < 4; i++)
 		{
 			for(int j = 0; j < 5; j++)
 			{
 				GAfirstPSO(numberOfIterations, new Functions(i,-10.0, 10.0, -1));
+				PSOfirstGA(numberOfIterations, new Functions(i, -10.0, 10.0, -1));
+				
 				numberOfIterations += 20;
 			}
 			function += 1;
 			numberOfIterations = 20;
 			System.out.println("NEXT FUNCTION");
+			
+			
 		}
+		File RP = new File("data.csv");
+		
+        BufferedWriter writer = new BufferedWriter(new FileWriter(RP));
+        writer.write(data);
+         
+        writer.close();
 	}
 	
-	public static void GAfirstPSO(int iteration, Functions function)
+	public static void GAfirstPSO(int iteration, Functions function) throws Exception
 	{
 		double GAiterationPercentage = 1.0;
 		double PSOiterationPercentage = 0.0;
@@ -52,7 +70,7 @@ public class Manager
 			
 			for(int j = 0; j < iteration*GAiterationPercentage; j++)
 			{
-				System.out.println(Arrays.toString(geneticAlgorithm.getPopulation()));
+				System.out.println("Evolving GA");
 				geneticAlgorithm.Evolve();
 			}
 			
@@ -63,11 +81,49 @@ public class Manager
 			
 			for(int j = 0; j < iteration*PSOiterationPercentage; j++)
 			{
-				System.out.println(Arrays.toString(swarm.getParticles()));
+				System.out.println("Updating Velocities");
 				swarm.updateVelocities();
 			}
+			
+			data+=(function.getFunctionNumber()+",GA,"+iteration+","+GAiterationPercentage*100+","+PSOiterationPercentage*100+","+swarm.getBestPosition().getX()+","+swarm.bestPositionsY()+","+Math.sqrt(Math.pow(swarm.bestPositionsY()-function.getY(), 2)+Math.pow(swarm.getBestPosition().getX()-function.getX(), 2))+"\n");
+			
 			GAiterationPercentage -= .2;
 			PSOiterationPercentage += .2;
 		}
 	}
+	
+	public static void PSOfirstGA(int iteration, Functions function) throws Exception
+	{
+		double GAiterationPercentage = 0.0;
+		double PSOiterationPercentage = 1.0;
+		
+		double [] globalMinumums = {0.6351, 1.5489, 0.1428, 0};
+		
+		for(int i = 0; i < 4; i++)
+		{
+			
+			Swarm swarm = new Swarm(PSOPopulation, function, PSOInertia, PSOCognitive, PSOSocial);
+			
+			for(int j = 0; j < iteration*PSOiterationPercentage; j++)
+			{
+				System.out.println("Updating Velocities");
+				swarm.updateVelocities();
+			}
+			Functions function2 = new Functions(function.getFunctionNumber(), swarm.getBestPosition().getX()-2, swarm.getBestPosition().getX()+2, -1);
+
+			FunctionGA geneticAlgorithm = new FunctionGA(GAPopulation, MutationRate, function2);
+			
+			for(int j = 0; j < iteration*GAiterationPercentage; j++)
+			{
+				System.out.println("Evolving GA");
+				geneticAlgorithm.Evolve();
+			}
+								
+			data+=(function.getFunctionNumber()+",PSO,"+iteration+","+GAiterationPercentage*100+","+PSOiterationPercentage*100+","+geneticAlgorithm.ChromosomeToDecimalValue(geneticAlgorithm.getBestChromosome())+","+geneticAlgorithm.getFitness(geneticAlgorithm.getBestChromosome())+","+Math.sqrt(Math.pow(geneticAlgorithm.getFitness(geneticAlgorithm.getBestChromosome())-function.getY(), 2)+Math.pow(geneticAlgorithm.getFitness(geneticAlgorithm.getBestChromosome())-function.getX(), 2))+"\n");
+			
+			GAiterationPercentage += .2;
+			PSOiterationPercentage -= .2;
+		}
+	}
+
 }
