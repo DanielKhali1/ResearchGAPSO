@@ -1,1 +1,0 @@
-Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,Current iteration,Current Algorithm,Gen/Epoch#,Indv #,X,Y

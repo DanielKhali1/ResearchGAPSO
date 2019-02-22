@@ -34,7 +34,7 @@ public class Manager
 	{
 		int numberOfIterations = 20;
 		
-		File RP = new File("wow.txt");
+		File RP = new File("data.csv");
  		BufferedWriter writer = new BufferedWriter(new FileWriter(RP));
 		writer.write("Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,Current iteration,Current Algorithm,Gen/Epoch#,Indv #,X,Y\n");
 		writer.close();
@@ -58,7 +58,7 @@ public class Manager
 		{
 			try {
 				System.out.println("writing" + (dat.size()-i));
-					writer = new BufferedWriter(new FileWriter(new File("data.csv"), true));
+					writer = new BufferedWriter(new FileWriter(RP, true));
 					writer.append(dat.get(i));
 					writer.flush();
 					writer.close();
@@ -120,9 +120,9 @@ public class Manager
 				{
 					System.out.println("writing to file GAit "+k +" actual it " + j + " function "  + i);
 					if(swarm.getBestPosition().getX() != swarm.getParticles()[k].getPosition().getX())
-						dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].getPosition().getY()+"\n");
+						dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+"\n");
 					else
-						dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].getPosition().getY()+",bestInCurrentpop\n");
+						dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+",bestInCurrentpop\n");
 
 				}
 				swarm.updateVelocities();
@@ -131,9 +131,9 @@ public class Manager
 			{
 				System.out.println("writing to file finishing PSO completely");
 				if(swarm.getBestPosition().getX() != swarm.getParticles()[k].getPosition().getX())
-					dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*PSOiterationPercentage+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].getPosition().getY()+"\n");
+					dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*PSOiterationPercentage+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+"\n");
 				else
-					dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*PSOiterationPercentage+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].getPosition().getY()+",bestInCurrentpop\n");
+					dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*PSOiterationPercentage+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+",bestInCurrentpop\n");
 
 			}
 			
