@@ -299,7 +299,7 @@ public class GUI extends Application{
 		pane.getChildren().add(DisplayPane);
 		pane.getChildren().add(bestSolutionPane);
 
-
+/*
 		btGAStartIterations.setOnAction(new EventHandler<ActionEvent>() {
 	    	@Override
 	    	public void handle(ActionEvent event)
@@ -501,7 +501,7 @@ public class GUI extends Application{
 		    		}
 		    	}
 			});
-		}
+		}*/
   }
 
   public static void main(String[] args) {
