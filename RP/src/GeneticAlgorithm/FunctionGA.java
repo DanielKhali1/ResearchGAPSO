@@ -9,6 +9,8 @@ public class FunctionGA extends GeneticAlgorithm
 	{
 		super(populationSize, mutationRate);
 		this.function = function;
+    	generatePopulation();
+
 	}
 
 	@Override
@@ -72,6 +74,18 @@ public class FunctionGA extends GeneticAlgorithm
 				if(j == 3)
 					newIndividual += ".";
 				newIndividual += Math.round(Math.random());
+			}
+			
+			while(ChromosomeToDecimalValue(newIndividual) < function.getLowRange() || ChromosomeToDecimalValue(newIndividual) > function.getHighRange())
+			{
+				newIndividual = "";
+
+				for(int j = 0; j < 16; j++)//fix this line
+				{
+					if(j == 3)
+						newIndividual += ".";
+					newIndividual += Math.round(Math.random());
+				}
 			}
 			population[i] = newIndividual;
 		}

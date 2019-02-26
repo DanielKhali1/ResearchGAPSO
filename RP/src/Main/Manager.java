@@ -36,22 +36,19 @@ public class Manager
 		
 		File RP = new File("data.csv");
  		BufferedWriter writer = new BufferedWriter(new FileWriter(RP));
-		writer.write("Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,Current iteration,Current Algorithm,Gen/Epoch#,Indv #,X,Y\n");
+		writer.write("Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,X,Y\n");
 		writer.close();
 		
 		
 
-		for(int i = 1; i < 4; i++)
-		{
-			for(int j = 0; j < 1; j++)//5
+			for(int j = 0; j < 5; j++)//5
 			{
-				GAfirstPSO(numberOfIterations, new Functions(i,-10.0, 10.0, -1), 1);
-				//PSOfirstGA(numberOfIterations, new Functions(i, -10.0, 10.0, -1), 1);
+				GAfirstPSO(numberOfIterations, new Functions(2,-10.0, 10.0, -1), 1);
+				//PSOfirstGA(numberOfIterations, new Functions(2, -10.0, 10.0, -1), 1);
 				numberOfIterations += 20;
 			}
 			numberOfIterations = 20;
 			System.out.println("NEXT FUNCTION");
-		}
 		
 		
 		for(int i =0; i < dat.size(); i++)
@@ -66,7 +63,6 @@ public class Manager
 			catch(IOException f)
 				{
 					System.out.println("something didn't work");
-
 				}
 		}
 		
@@ -90,21 +86,23 @@ public class Manager
 				for(int k = 0; k < ga.getPopulationSize(); k++)
 				{	
 					System.out.println("writing to file GAit "+ k +" actual it " + j + " function "  + i);
-					if(ga.getBestChromosome() != ga.getPopulation()[k])
-						dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+"\n");
-					else
-						dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+",bestInCurrentpop\n");
+					//if(ga.getBestChromosome() != ga.getPopulation()[k])
+						//dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+"\n");
+					//else
+						//dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+",bestInCurrentpop\n");
 				}
 				ga.Evolve();
 			}
 			
+			dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + ga.ChromosomeToDecimalValue(ga.getBestChromosome()) + "," + ga.getFitness(ga.getBestChromosome())+"\n");
+
 			for(int k = 0; k < ga.getPopulationSize(); k++)
 			{
 				System.out.println("writing to file finishing GA and Starting PSO");
-				if(ga.getBestChromosome() != ga.getPopulation()[k])
-					dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*GAiterationPercentage+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+"\n");
-				else
-					dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*GAiterationPercentage+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+",bestInCurrentpop\n");
+				//if(ga.getBestChromosome() != ga.getPopulation()[k])
+					//dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*GAiterationPercentage+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+"\n");
+				//else
+					//dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*GAiterationPercentage+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+",bestInCurrentpop\n");
 
 			}
 			
@@ -112,6 +110,8 @@ public class Manager
 			Functions function2 = new Functions(function.getFunctionNumber(), ga.ChromosomeToDecimalValue(ga.getBestChromosome())-2, ga.ChromosomeToDecimalValue(ga.getBestChromosome())+2, -1);
 						
 			Swarm swarm = new Swarm(PSOPopulation, function2, PSOInertia, PSOCognitive, PSOSocial);
+			//		writer.write("Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,X,Y\n");
+
 			
 			for(int j = 0; j < iteration*PSOiterationPercentage; j++)
 			{
@@ -119,10 +119,10 @@ public class Manager
 				for(int k = 0; k < swarm.getParticles().length; k++)
 				{
 					System.out.println("writing to file GAit "+k +" actual it " + j + " function "  + i);
-					if(swarm.getBestPosition().getX() != swarm.getParticles()[k].getPosition().getX())
-						dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+"\n");
-					else
-						dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+",bestInCurrentpop\n");
+					//if(swarm.getBestPosition().getX() != swarm.getParticles()[k].getPosition().getX())
+						//dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+"\n");
+					//else
+						//dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+",bestInCurrentpop\n");
 
 				}
 				swarm.updateVelocities();
@@ -130,12 +130,13 @@ public class Manager
 			for(int k = 0; k < swarm.getParticles().length; k  ++)
 			{
 				System.out.println("writing to file finishing PSO completely");
-				if(swarm.getBestPosition().getX() != swarm.getParticles()[k].getPosition().getX())
-					dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*PSOiterationPercentage+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+"\n");
-				else
-					dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*PSOiterationPercentage+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+",bestInCurrentpop\n");
-
+				//if(swarm.getBestPosition().getX() != swarm.getParticles()[k].getPosition().getX())
+					//dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*PSOiterationPercentage+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+"\n");
+				//else
+					//dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*PSOiterationPercentage+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+",bestInCurrentpop\n");
 			}
+			dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + swarm.getBestPosition().getX() + "," + swarm.bestPositionsY() +"\n");
+
 			
 			GAiterationPercentage -= .2;
 			PSOiterationPercentage += .2;

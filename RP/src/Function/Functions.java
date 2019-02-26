@@ -16,6 +16,15 @@ public class Functions
 		this.functionNumber = functionNumber;
 	}
 	
+	public double getLowRange()
+	{
+		return lowRange;
+	}
+	public double getHighRange()
+	{
+		return highRange;
+	}
+	
 	public int getFunctionNumber()
 	{
 		return functionNumber;
@@ -85,6 +94,33 @@ public class Functions
             return 10;
         }
         else
+            return x*x + -1* Math.cos(Math.pow((4*x),2));
+    }
+    
+    
+    public static double Function1(double x)
+    {
+
+            return Math.pow(x, (x+5)/4)+Math.cos(9*x*x-Math.sin(x));
+    }
+    
+    public static double Function2(double x)
+    {
+
+            return (Math.sin(10 * Math.PI * x)/2*x)+Math.pow((x-1), 4);
+    }
+    
+    public static double Function3(double x)
+    {
+ 
+        
+            return (x*x)+Math.pow(Math.sin(8*x-9), 4);
+    }
+    
+    public static double Function4(double x)
+    {
+
+        
             return x*x + -1* Math.cos(Math.pow((4*x),2));
     }
 }

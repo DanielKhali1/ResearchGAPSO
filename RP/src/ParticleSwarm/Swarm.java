@@ -12,8 +12,6 @@ public class Swarm
     private double bestEval;
     
     private double beginRange, endRange;
-    private static final double DEFAULT_BEGIN_RANGE = -10;
-    private static final double DEFAULT_END_RANGE = 10;
 	private Functions function;
     Particle[] particles;
 
@@ -23,8 +21,8 @@ public class Swarm
         double infinity = Double.POSITIVE_INFINITY;
         bestPosition = new Vector(infinity, infinity);
         bestEval = Double.POSITIVE_INFINITY;
-        beginRange = DEFAULT_BEGIN_RANGE;
-        endRange = DEFAULT_END_RANGE;
+        this.beginRange = function.getLowRange();
+        this.endRange = function.getHighRange();
         particles = initialize();
         epochs = 0;
         

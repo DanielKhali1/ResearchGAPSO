@@ -17,7 +17,6 @@ public abstract class GeneticAlgorithm
     	this.mutationRate = mutationRate;
     	this.generation = 0;
     	
-    	generatePopulation();
     }
     
     public void Evolve()

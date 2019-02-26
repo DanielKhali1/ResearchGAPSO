@@ -2,6 +2,8 @@ package Main;
 
 import ParticleSwarm.*;
 import java.util.ArrayList;
+
+import Function.Functions;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -299,15 +301,15 @@ public class GUI extends Application{
 		pane.getChildren().add(DisplayPane);
 		pane.getChildren().add(bestSolutionPane);
 
-/*
+		
 		btGAStartIterations.setOnAction(new EventHandler<ActionEvent>() {
 	    	@Override
 	    	public void handle(ActionEvent event)
 	    	{
 	    		bestSolutionPane.getChildren().clear();
 	    		btGAStartIterations.setDisable(true);
-	    		//	public FunctionGA(int populationSize, double mutationRate, int function)
-	    		FunctionGA geneticAlgorithm = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), currentFunction);
+	    		//	int populationSize, double mutationRate, Functions function
+	    		FunctionGA geneticAlgorithm = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction,-10.0, 10.0, -1));
 	    		timeline = new Timeline();
 				timeline.setCycleCount((Integer.parseInt(tfGAiterations.getText())));
 				n = 0;
@@ -375,7 +377,7 @@ public class GUI extends Application{
 	    		btPSOStartIterations.setDisable(true);
 	    		
 	    		System.out.println(currentFunction);
-	    		Swarm swarm = new Swarm(Integer.parseInt(tfPSOPopulation.getText()), currentFunction, Double.parseDouble(tfPSOInertia.getText()), Double.parseDouble(tfPSOCognitive.getText()), Double.parseDouble(tfPSOSocial.getText()));
+	    		Swarm swarm = new Swarm(Integer.parseInt(tfPSOPopulation.getText()),  new Functions(currentFunction,-10.0, 10.0, -1), Double.parseDouble(tfPSOInertia.getText()), Double.parseDouble(tfPSOCognitive.getText()), Double.parseDouble(tfPSOSocial.getText()));
 	    		
 	    		timeline = new Timeline();
 				timeline.setCycleCount((Integer.parseInt(tfPSOiterations.getText())));
@@ -426,7 +428,6 @@ public class GUI extends Application{
 
 	    	}
 		});
-
 
 		Scene scene = new Scene(pane, 990, 780);
 		stage.setTitle("PSO-GA research project"); // Set the stage title
@@ -480,15 +481,15 @@ public class GUI extends Application{
 		    			
 		    			switch(ii)
 		    			{
-		    				case 0: point[1] = Function.Functions.firstFunction(i);currentFunction = 1;
+		    				case 0: point[1] = Function.Functions.Function1(i);currentFunction = 1;
 		    					break;
-		    				case 1: point[1] = Function.Functions.secondFunction(i);currentFunction = 2;
+		    				case 1: point[1] = Function.Functions.Function2(i);currentFunction = 2;
 	    						break;
 
-		    				case 2: point[1] = Function.Functions.thirdFunction(i);currentFunction = 3;
+		    				case 2: point[1] = Function.Functions.Function3(i);currentFunction = 3;
 	    						break;
 
-		    				case 3: point[1] = Function.Functions.fourthFunction(i);currentFunction = 4;
+		    				case 3: point[1] = Function.Functions.Function4(i);currentFunction = 4;
 	    						break;
 		    			}
 		    			points.add(point);
@@ -501,7 +502,7 @@ public class GUI extends Application{
 		    		}
 		    	}
 			});
-		}*/
+		}
   }
 
   public static void main(String[] args) {
