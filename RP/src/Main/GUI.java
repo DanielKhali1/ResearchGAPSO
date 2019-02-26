@@ -258,11 +258,16 @@ public class GUI extends Application{
 		DisplayPane.getChildren().add(PSOiterationstxt);
 		DisplayPane.getChildren().add(GAiterationtxt);
 		
-		Button runBoth = new Button("run both");
-		runBoth.setLayoutX(600);
-		runBoth.setLayoutY(20);
-		DisplayPane.getChildren().add(runBoth);
+		Button GAthenPSO = new Button("GA Then PSO");
+		GAthenPSO.setLayoutX(600);
+		GAthenPSO.setLayoutY(20);
+		DisplayPane.getChildren().add(GAthenPSO);
 		
+		
+		Button PSOthenGA = new Button("PSO Then GA");
+		PSOthenGA.setLayoutX(600);
+		PSOthenGA.setLayoutY(50);
+		DisplayPane.getChildren().add(PSOthenGA);
 		
 		Pane pane = new Pane();
 		
@@ -421,11 +426,105 @@ public class GUI extends Application{
 		});
 		
 		//PSO first
-		runBoth.setOnAction(new EventHandler<ActionEvent>() {
+		PSOthenGA.setOnAction(new EventHandler<ActionEvent>() {
 	    	@Override
 	    	public void handle(ActionEvent event)
 	    	{
+	    		bestSolutionPane.getChildren().clear();
+	    		btPSOStartIterations.setDisable(true);
+	    		
+	    		System.out.println(currentFunction);
+	    		Swarm swarm = new Swarm(Integer.parseInt(tfPSOPopulation.getText()),  new Functions(currentFunction,-10.0, 10.0, -1), Double.parseDouble(tfPSOInertia.getText()), Double.parseDouble(tfPSOCognitive.getText()), Double.parseDouble(tfPSOSocial.getText()));
+	    		FunctionGA geneticAlgorithm = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction, swarm.getBestPosition().getX()-2, swarm.getBestPosition().getX()+2, -1));
 
+	    		timeline = new Timeline();
+				timeline.setCycleCount((Integer.parseInt(tfPSOiterations.getText())));
+
+				n = 0;
+				KeyFrame keyframe = new KeyFrame(Duration.millis(100), action-> 
+				{
+
+					if(swarm.getEpoch() == (Integer.parseInt(tfPSOiterations.getText())))
+					{
+						bestSolutionPane.getChildren().clear();
+						GAiterationtxt.setText("GA Iteration: " + n);
+						
+						GAX.setText("X: " + geneticAlgorithm.ChromosomeToDecimalValue(geneticAlgorithm.getBestChromosome()));
+						GAY.setText("Y: " + geneticAlgorithm.getFitness(geneticAlgorithm.getBestChromosome()));
+						
+						
+						if(n == (Integer.parseInt(tfGAiterations.getText())))
+				    		btGAStartIterations.setDisable(false);
+						
+						for(int i = 0; i < geneticAlgorithm.getPopulationSize(); i++)
+						{
+							Circle tempcircle = new Circle();
+							tempcircle.setRadius(4);
+							tempcircle.setFill(Color.DARKGREEN);
+							tempcircle.setLayoutX(260+geneticAlgorithm.ChromosomeToDecimalValue(geneticAlgorithm.getPopulation()[i])*90);
+							tempcircle.setLayoutY(530+geneticAlgorithm.getFitness(geneticAlgorithm.getPopulation()[i])*-90);
+							bestSolutionPane.getChildren().add(tempcircle);
+						}
+						
+						
+						Circle circle = new Circle();
+						circle.setRadius(4);
+						circle.setFill(Color.GREEN);
+						circle.setLayoutX(260+geneticAlgorithm.ChromosomeToDecimalValue(geneticAlgorithm.getBestChromosome())*90);
+						circle.setLayoutY(530+geneticAlgorithm.getFitness(geneticAlgorithm.getBestChromosome())*-90);
+						
+						
+						
+						
+						bestSolutionPane.getChildren().add(circle);
+						
+						geneticAlgorithm.Evolve();
+						
+						if(geneticAlgorithm.getGeneration() == (Integer.parseInt(tfGAiterations.getText())))
+						{
+							timeline.stop();
+						}
+					}
+					
+					else
+					{
+						System.out.println("i'm doing something");
+						bestSolutionPane.getChildren().clear();
+						n++;
+						PSOiterationstxt.setText("PSO Iteration: " + n);
+					
+						PSOX.setText("X: " + swarm.getBestPosition().getX());
+						PSOY.setText("Y: " + swarm.bestPositionsY());					
+					
+						if(n == (Integer.parseInt(tfPSOiterations.getText())))
+			    			btPSOStartIterations.setDisable(false);
+					
+						for(int i = 0; i < swarm.getParticles().length; i++)
+						{
+							Circle tempcircle = new Circle();
+							tempcircle.setRadius(4);
+							tempcircle.setFill(Color.RED);
+							tempcircle.setLayoutX(260+swarm.getParticles()[i].getPosition().getX()*90);
+							tempcircle.setLayoutY(530+swarm.getParticles()[i].eval()*-90);
+							bestSolutionPane.getChildren().add(tempcircle);
+						}
+					
+						swarm.updateVelocities();
+					
+					}
+					
+				});
+				timeline.getKeyFrames().add(keyframe);
+				timeline.play();
+
+	    	}
+    	});
+		
+		GAthenPSO.setOnAction(new EventHandler<ActionEvent>() {
+	    	@Override
+	    	public void handle(ActionEvent event)
+	    	{
+	    		
 	    	}
 		});
 

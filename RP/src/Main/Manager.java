@@ -43,8 +43,7 @@ public class Manager
 
 			for(int j = 0; j < 5; j++)//5
 			{
-				GAfirstPSO(numberOfIterations, new Functions(2,-10.0, 10.0, -1), 1);
-				//PSOfirstGA(numberOfIterations, new Functions(2, -10.0, 10.0, -1), 1);
+ 				//PSOfirstGA(numberOfIterations, new Functions(2, -10.0, 10.0, -1), 1);
 				numberOfIterations += 20;
 			}
 			numberOfIterations = 20;
