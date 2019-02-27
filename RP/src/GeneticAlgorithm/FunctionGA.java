@@ -78,15 +78,15 @@ public class FunctionGA extends GeneticAlgorithm
 			
 			while(ChromosomeToDecimalValue(newIndividual) < function.getLowRange() || ChromosomeToDecimalValue(newIndividual) > function.getHighRange())
 			{
+				System.out.println("your fucked");
 				newIndividual = "";
-				System.out.println("hello");
-
 				for(int j = 0; j < 16; j++)//fix this line
 				{
 					if(j == 3)
 						newIndividual += ".";
 					newIndividual += Math.round(Math.random());
 				}
+				System.out.println(ChromosomeToDecimalValue(newIndividual));
 			}
 			population[i] = newIndividual;
 		}
@@ -104,11 +104,11 @@ public class FunctionGA extends GeneticAlgorithm
     	
     	answer += Integer.parseInt(chromosome.substring(0, chromosome.indexOf('.')),2);
     	answer += .0001 * Integer.parseInt(chromosome.substring(chromosome.indexOf('.')+1),2);
-    	answer -= 10;
-    	if(answer > 10)
-    		return 10;
-    	if(answer < -10)
-    		return -10;
+    	answer -= function.getHighRange()-function.getLowRange();
+    	if(answer > function.getHighRange())
+    		return function.getHighRange();
+    	if(answer < function.getLowRange())
+    		return function.getLowRange();
     	return answer;
 	}
 	

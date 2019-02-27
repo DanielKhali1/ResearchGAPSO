@@ -43,7 +43,8 @@ public class Manager
 
 			for(int j = 0; j < 5; j++)//5
 			{
- 				//PSOfirstGA(numberOfIterations, new Functions(2, -10.0, 10.0, -1), 1);
+				GAfirstPSO(numberOfIterations, new Functions(2, -10.0, 10.0, -1), 1);
+ 				PSOfirstGA(numberOfIterations, new Functions(2, -10.0, 10.0, -1), 1);
 				numberOfIterations += 20;
 			}
 			numberOfIterations = 20;
@@ -141,7 +142,7 @@ public class Manager
 			PSOiterationPercentage += .2;
 		}
 	}
-	/*
+
 	public static void PSOfirstGA(int iteration, Functions function, int test) throws Exception
 	{
 		double GAiterationPercentage = 0.0;
@@ -156,19 +157,21 @@ public class Manager
 			
 			for(int j = 0; j < iteration*PSOiterationPercentage; j++)
 			{
+				/*
 				for(int k = 0; k < swarm.getParticles().length; k++)
 				{
-					System.out.println("writing to file PSOit "+k +" actual it " + j + " function "  + i);
 					data+=(test+",PSO,"+function+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].getPosition().getY()+"\n");
-				}
+				}*/
 				swarm.updateVelocities();
+				System.out.println("updating velocities for PSO first");
 			}
 			
-			for(int k = 0; k < swarm.getParticles().length; k  ++)
+			/*for(int k = 0; k < swarm.getParticles().length; k  ++)
 			{
 				System.out.println("writing to file finishing PSO and moving to GA");
 				data+=(test+",GA,"+function+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*PSOiterationPercentage+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].getPosition().getY()+"\n");
-			}
+			}*/
+			dat.add(test+",PSO,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + swarm.getBestPosition().getX() + "," + swarm.bestPositionsY() +"\n");
 			
 			Functions function2 = new Functions(function.getFunctionNumber(), swarm.getBestPosition().getX()-2, swarm.getBestPosition().getX()+2, -1);
 
@@ -176,25 +179,27 @@ public class Manager
 			
 			for(int j = 0; j < iteration*GAiterationPercentage; j++)
 			{
-				for(int k = 0; k < ga.getPopulationSize(); k++)
+				/*for(int k = 0; k < ga.getPopulationSize(); k++)
 				{
 					System.out.println("writing to file GAit "+k +" actual it " + j + " function "  + i);
 					data+=(test+",GA,"+function+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+"\n");
-				}
+				}*/
 
 				ga.Evolve();
+				System.out.println("Evolving GA PSO first");
 			}
+			dat.add(test+",PSO,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + ga.ChromosomeToDecimalValue(ga.getBestChromosome()) + "," + ga.getFitness(ga.getBestChromosome()) +"\n");
 						
-			for(int k = 0; k < ga.getPopulationSize(); k++)
+			/*for(int k = 0; k < ga.getPopulationSize(); k++)
 			{
 				System.out.println("writing to file finishing GA");
 				data+=(test+",GA,"+function+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*GAiterationPercentage+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+"\n");
-			}
+			}*/
 			
 			GAiterationPercentage += .2;
 			PSOiterationPercentage -= .2;
 		}
 	}
-	*/
+
 
 }

@@ -23,7 +23,8 @@ public abstract class GeneticAlgorithm
     {
     	String[] newPopulation = new String[populationSize];
     	
-        for(int i = 0; i < populationSize; i++)
+    	newPopulation[0] = getBestChromosome();
+        for(int i = 1; i < populationSize; i++)
         {
         	String parent1 = Selection();
         	String parent2 = Selection();
@@ -51,7 +52,8 @@ public abstract class GeneticAlgorithm
     public abstract String Crossover(String parent1, String parent2);
     public abstract String Mutate(String chromosome);
     public abstract void generatePopulation();
-    
+    public abstract String getBestChromosome();
+
     public abstract String toString();
     
     public int getPopulationSize(){return populationSize;}

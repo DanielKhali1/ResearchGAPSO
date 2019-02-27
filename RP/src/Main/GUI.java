@@ -47,6 +47,7 @@ public class GUI extends Application{
 	double GAiterationNumber = 0;
 	double PSOiterationNumber = 0;
 	int n;
+	int h;
 	Timeline timeline = null;
 
 	
@@ -435,25 +436,28 @@ public class GUI extends Application{
 	    		
 	    		System.out.println(currentFunction);
 	    		Swarm swarm = new Swarm(Integer.parseInt(tfPSOPopulation.getText()),  new Functions(currentFunction,-10.0, 10.0, -1), Double.parseDouble(tfPSOInertia.getText()), Double.parseDouble(tfPSOCognitive.getText()), Double.parseDouble(tfPSOSocial.getText()));
-	    		FunctionGA geneticAlgorithm = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction, swarm.getBestPosition().getX()-2, swarm.getBestPosition().getX()+2, -1));
 
 	    		timeline = new Timeline();
-				timeline.setCycleCount((Integer.parseInt(tfPSOiterations.getText())));
+				timeline.setCycleCount((Integer.parseInt(tfPSOiterations.getText())) + Integer.parseInt(tfGAiterations.getText()));
 
 				n = 0;
+				h = 0;
 				KeyFrame keyframe = new KeyFrame(Duration.millis(100), action-> 
 				{
+		    		FunctionGA geneticAlgorithm = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction, swarm.getBestPosition().getX()-.25, swarm.getBestPosition().getX()+.25, -1));
 
-					if(swarm.getEpoch() == (Integer.parseInt(tfPSOiterations.getText())))
+
+					if(swarm.getEpoch() >= (Integer.parseInt(tfPSOiterations.getText()))-1)
 					{
+						h++;
 						bestSolutionPane.getChildren().clear();
-						GAiterationtxt.setText("GA Iteration: " + n);
+						GAiterationtxt.setText("GA Iteration: " + h);
 						
 						GAX.setText("X: " + geneticAlgorithm.ChromosomeToDecimalValue(geneticAlgorithm.getBestChromosome()));
 						GAY.setText("Y: " + geneticAlgorithm.getFitness(geneticAlgorithm.getBestChromosome()));
 						
 						
-						if(n == (Integer.parseInt(tfGAiterations.getText())))
+						if(h == (Integer.parseInt(tfGAiterations.getText())))
 				    		btGAStartIterations.setDisable(false);
 						
 						for(int i = 0; i < geneticAlgorithm.getPopulationSize(); i++)
@@ -488,7 +492,6 @@ public class GUI extends Application{
 					
 					else
 					{
-						System.out.println("i'm doing something");
 						bestSolutionPane.getChildren().clear();
 						n++;
 						PSOiterationstxt.setText("PSO Iteration: " + n);
