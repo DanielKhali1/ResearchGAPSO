@@ -23,8 +23,8 @@ public abstract class GeneticAlgorithm
     {
     	String[] newPopulation = new String[populationSize];
     	
-    	newPopulation[0] = getBestChromosome();
-        for(int i = 1; i < populationSize; i++)
+    	//newPopulation[0] = getBestChromosome();
+        for(int i = 0; i < populationSize; i++)
         {
         	String parent1 = Selection();
         	String parent2 = Selection();
