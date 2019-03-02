@@ -175,4 +175,10 @@ The reason behind combining the two algorithms together is because both algorith
 **Particle Swarm Optimization:** converge slowly although is more accurate because of how slowly it converges
 
 ## Testing both Algorithms Together ##
+The only way it could possibly said that combining both the algorithms together is more efficient then using them on their own would be if the combined hibridization can find a higher quality solution in less iterations then Genetic Algorithms, or PSO can do alone
 
+### How they will be combined ###
+
+Step 1: Run GA/PSO first for a set amount of iterations.
+
+Step 2: reduce th 
