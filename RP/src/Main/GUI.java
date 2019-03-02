@@ -37,6 +37,9 @@ public class GUI extends Application{
 	TextField tfPSOSocial = new TextField("1.496180");
 	Button btPSOStartIterations = new Button("Solve");
 	
+	FunctionGA geneticAlgorithm;
+
+	
 	double globalMin;
 
 	int currentFunction = -1;
@@ -315,23 +318,21 @@ public class GUI extends Application{
 	    		bestSolutionPane.getChildren().clear();
 	    		btGAStartIterations.setDisable(true);
 	    		//	int populationSize, double mutationRate, Functions function
-	    		FunctionGA geneticAlgorithm = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction,-10.0, 10.0, -1));
+	    		geneticAlgorithm  = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction, -5,5 , -1));
 	    		timeline = new Timeline();
 				timeline.setCycleCount((Integer.parseInt(tfGAiterations.getText())));
 				n = 0;
 				KeyFrame keyframe = new KeyFrame(Duration.millis(75), action-> 
 				{
-					//put x and y on grid then evolve
-					
+					h++;
 					bestSolutionPane.getChildren().clear();
-					n++;
-					GAiterationtxt.setText("GA Iteration: " + n);
+					GAiterationtxt.setText("GA Iteration: " + h);
 					
 					GAX.setText("X: " + geneticAlgorithm.ChromosomeToDecimalValue(geneticAlgorithm.getBestChromosome()));
 					GAY.setText("Y: " + geneticAlgorithm.getFitness(geneticAlgorithm.getBestChromosome()));
 					
 					
-					if(n == (Integer.parseInt(tfGAiterations.getText())))
+					if(h == (Integer.parseInt(tfGAiterations.getText())))
 			    		btGAStartIterations.setDisable(false);
 					
 					for(int i = 0; i < geneticAlgorithm.getPopulationSize(); i++)
@@ -437,14 +438,16 @@ public class GUI extends Application{
 	    		System.out.println(currentFunction);
 	    		Swarm swarm = new Swarm(Integer.parseInt(tfPSOPopulation.getText()),  new Functions(currentFunction,-10.0, 10.0, -1), Double.parseDouble(tfPSOInertia.getText()), Double.parseDouble(tfPSOCognitive.getText()), Double.parseDouble(tfPSOSocial.getText()));
 
+	    		geneticAlgorithm  = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction, swarm.getBestPosition().getX()-.25, swarm.getBestPosition().getX()+.25, -1));
 	    		timeline = new Timeline();
 				timeline.setCycleCount((Integer.parseInt(tfPSOiterations.getText())) + Integer.parseInt(tfGAiterations.getText()));
+				
+				
 
 				n = 0;
 				h = 0;
 				KeyFrame keyframe = new KeyFrame(Duration.millis(100), action-> 
 				{
-		    		FunctionGA geneticAlgorithm = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction, swarm.getBestPosition().getX()-.25, swarm.getBestPosition().getX()+.25, -1));
 
 
 					if(swarm.getEpoch() >= (Integer.parseInt(tfPSOiterations.getText()))-1)
@@ -513,7 +516,7 @@ public class GUI extends Application{
 						}
 					
 						swarm.updateVelocities();
-					
+						geneticAlgorithm = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction, swarm.getBestPosition().getX()-.25, swarm.getBestPosition().getX()+.25, -1));
 					}
 					
 				});

@@ -78,7 +78,6 @@ public class FunctionGA extends GeneticAlgorithm
 			
 			while(ChromosomeToDecimalValue(newIndividual) < function.getLowRange() || ChromosomeToDecimalValue(newIndividual) > function.getHighRange())
 			{
-				System.out.println("your fucked");
 				newIndividual = "";
 				for(int j = 0; j < 16; j++)//fix this line
 				{
