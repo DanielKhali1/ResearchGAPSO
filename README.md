@@ -143,7 +143,7 @@ This formula is used to update each particle's velocity in the swarm:
 
 **present[]** = particle's current position vector      
  
-## Decided Variables ##
+### Decided Variables ###
 
 for this particular project it has been decided that these variables will be used in particle swarm.
 
@@ -152,5 +152,9 @@ for this particular project it has been decided that these variables will be use
 **Social Component** = 1.496180
 
 **Inertial Component** = 0.729844
+
+## PSO & GA Compared ##
+<img src="pics/PSORep1.gif" width = "300">
+<img src="pics/GARep1.gif" width = "300">
 
 ![gaPSOGif](pics/gaPSO.gif)
