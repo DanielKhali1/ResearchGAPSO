@@ -154,7 +154,7 @@ for this particular project it has been decided that these variables will be use
 **Inertial Component** = 0.729844
 
 ## PSO & GA Compared ##
-<img src="pics/PSORep1.gif" width = "300">
-<img src="pics/GARep1.gif" width = "300">
+<img src="pics/PSORep1.gif" width = "300" align="left">
+<img src="pics/GARep2.gif" width = "300">
 
 ![gaPSOGif](pics/gaPSO.gif)
