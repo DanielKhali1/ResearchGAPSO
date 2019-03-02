@@ -154,7 +154,13 @@ for this particular project it has been decided that these variables will be use
 **Inertial Component** = 0.729844
 
 ## PSO & GA Compared ##
-<img src="pics/PSORep1.gif" width = "300" align="left">
-<img src="pics/GARep2.gif" width = "300">
+<img src="pics/PSORep1.gif" width = "400" align="left">
+<img src="pics/GARep2.gif" width = "400">
+
+The reason behind combining the two algorithms together is because both algorithms contain weaknesses in which the other is strong in. for example:
+
+**Genetic Algorithms:** converge quickly although because of deceptive cases, are innaccurate.
+
+**Particle Swarm Optimization:** converge slowly although are more accurate because of how much ground they cover
 
 ![gaPSOGif](pics/gaPSO.gif)
