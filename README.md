@@ -61,6 +61,7 @@ chromosome
 
 One of the setbacks that Genetic Algorithms run into, is the ability to be decieved. Deceptive problems can ruin the chance of finding an accurate solution.
 
+<img src="pics/deceptive1.png" align="right" width = "300" height = "300">
 For  example,  (using  this  graphic)  if 
 we were to use a GA to find the local 
 minimum  of  this  line  it  would  go  to 
@@ -75,6 +76,11 @@ chromosomes  that  try  and  climb  the  giant  curve  to  get  the  global  min
 have lower fitness values. So they don’t have a high chance of being put into the 
 next generation making it very hard for them to pass on their genes. To get to the 
 global minimum.
+
+#### Representation: #### 
+<img src="pics/deceptive.PNG">
+
+A way to get around this problem is to implement higher mutation rates to allow the algorithm to search the solution space with more success. Although changing the mutation rate can lead to too much random variation which leads to the population never converging onto an actual solution.
 
 
 ## Particle Swarm Optimization ##
