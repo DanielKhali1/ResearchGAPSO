@@ -57,6 +57,14 @@ from [geeks for geeks](https://www.geeksforgeeks.org/genetic-algorithms/)
 chromosome 
 <img src="https://cdn-images-1.medium.com/max/1600/1*CGt_UhRqCjIDb7dqycmOAg.png" width ="200">
 
+### Decided Variables PSO###
+
+for this particular project it has been decided that these variables will be used in particle swarm.
+
+**Population Size** = 50
+
+**Mutation Rate** = .01
+
 ## GA Deceptive Cases ##
 
 One of the setbacks that Genetic Algorithms run into, is the ability to be decieved. Deceptive problems can ruin the chance of finding an accurate solution.
@@ -81,6 +89,7 @@ global minimum.
 <img src="pics/deceptive.PNG">
 
 A way to get around this problem is to implement higher mutation rates to allow the algorithm to search the solution space with more success. Although changing the mutation rate can lead to too much random variation which leads to the population never converging onto an actual solution.
+
 
 #### Genetic Algorithm with a high mutation rate: #### 
 <img src="pics/GAhighmutation.gif">
@@ -143,7 +152,7 @@ This formula is used to update each particle's velocity in the swarm:
 
 **present[]** = particle's current position vector      
  
-### Decided Variables ###
+### Decided Variables PSO###
 
 for this particular project it has been decided that these variables will be used in particle swarm.
 
@@ -152,6 +161,8 @@ for this particular project it has been decided that these variables will be use
 **Social Component** = 1.496180
 
 **Inertial Component** = 0.729844
+
+**Population Size** = 50
 
 ## PSO & GA Compared ##
 <img src="pics/PSORep1.gif" width = "400" align="left">
@@ -163,4 +174,4 @@ The reason behind combining the two algorithms together is because both algorith
 
 **Particle Swarm Optimization:** converge slowly although are more accurate because of how much ground they cover
 
-![gaPSOGif](pics/gaPSO.gif)
+
