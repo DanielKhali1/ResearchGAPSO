@@ -155,7 +155,7 @@ for this particular project it has been decided that these variables will be use
 
 ## PSO & GA Compared ##
 <img src="pics/PSORep1.gif" width = "400" align="left">
-<img src="pics/GARep2.gif" width = "400">
+<img src="pics/GARep3.gif" width = "400">
 
 The reason behind combining the two algorithms together is because both algorithms contain weaknesses in which the other is strong in. for example:
 
