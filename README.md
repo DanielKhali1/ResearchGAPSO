@@ -53,13 +53,13 @@ from [geeks for geeks](https://www.geeksforgeeks.org/genetic-algorithms/)
 
   
 ### Perform Mutation: ###
-- Mutation  will  occur  based  on  a  specific  rate,  and  will  change  one  random  gene  in  the 
+- Mutation  will  occur  based  on  a  specific  rate,  and  will  change random  genes  in  the 
 chromosome 
 <img src="https://cdn-images-1.medium.com/max/1600/1*CGt_UhRqCjIDb7dqycmOAg.png" width ="200">
 
-### Decided Variables PSO###
+### Decided Variables GA ##
 
-for this particular project it has been decided that these variables will be used in particle swarm.
+for this particular project it has been decided that these variables will be used in GA.
 
 **Population Size** = 50
 
@@ -152,7 +152,7 @@ This formula is used to update each particle's velocity in the swarm:
 
 **present[]** = particle's current position vector      
  
-### Decided Variables PSO###
+### Decided Variables PSO ###
 
 for this particular project it has been decided that these variables will be used in particle swarm.
 
@@ -172,6 +172,7 @@ The reason behind combining the two algorithms together is because both algorith
 
 **Genetic Algorithms:** converge quickly although because of deceptive cases, are innaccurate.
 
-**Particle Swarm Optimization:** converge slowly although are more accurate because of how much ground they cover
+**Particle Swarm Optimization:** converge slowly although is more accurate because of how slowly it converges
 
+## Testing both Algorithms Together ##
 
