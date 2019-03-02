@@ -55,9 +55,9 @@ from [geeks for geeks](https://www.geeksforgeeks.org/genetic-algorithms/)
 ### Perform Mutation: ###
 - Mutation  will  occur  based  on  a  specific  rate,  and  will  change  one  random  gene  in  the 
 chromosome 
-<img src="https://cdn-images-1.medium.com/max/1600/1*CGt_UhRqCjIDb7dqycmOAg.png">
+<img src="https://cdn-images-1.medium.com/max/1600/1*CGt_UhRqCjIDb7dqycmOAg.png" width ="200">
 
-## Deceptive Cases ##
+## GA Deceptive Cases ##
 
 One of the setbacks that Genetic Algorithms run into, is the ability to be decieved. Deceptive problems can ruin the chance of finding an accurate solution.
 
@@ -82,8 +82,75 @@ global minimum.
 
 A way to get around this problem is to implement higher mutation rates to allow the algorithm to search the solution space with more success. Although changing the mutation rate can lead to too much random variation which leads to the population never converging onto an actual solution.
 
+#### Genetic Algorithm with a high mutation rate: #### 
+<img src="pics/GAhighmutation.gif">
+
 
 ## Particle Swarm Optimization ##
 
+A Particle Swarm Optimization Algorithm (PSO) is a stochastic optimization algorithm that uses a population of particles that communicate with each-other and move via vectors through a solution space to the "best solution". The visualization of PSO looks almost like a swarm of bee's in the beginning, this is due to swarm's technique of searching a solution space. PSO is great for large solution space's, multi dimensional solution spaces, as well as very accurate solutions in the case of 2D functions.
+
+#### Visualization: ####
+<img src="pics/PSORep.gif" width = "300">
+
+### The Algorithm ###
+
+from [swarmintelligence.org](http://www.swarmintelligence.org/tutorials.php)
+
+1. initialize a population of particles with random positions
+2. Determine fitness of each particle in the population
+3. give each particle a pbest variable which stores the particles best ever position (pBest)
+4. choose the particle with the best fitness and store it's position in the swarm as (gBest)
+3. Until Solution Reached repeat:
+    1. calculate each particles velocity
+    2. update each particle position
+    3. if applicable set pBest for each particle
+    4. if applicable set gBest in swarm
+
+## Calculating Each Particle's Velocity ##
+
+#### formula ####
+This formula is used to update each particle's velocity in the swarm:
+
+    newVelocity[] = i * v[] + cc * rand() * (pbest[] - present[]) + sc * rand() * (gbest[] - present[])
+
+#### variables ####
+**v[]** = particle's velocity vector
+
+**present[]** = particle's current position vector 
+
+**pbest[]** = particles best saved position vector
+
+**gbest[]** = swarms best saved position vector
+
+**cc** = cognitive Component (decided by user)
+
+**sc** = social Component (decided by user)
+
+**i** = inertial Component (decided by user)
+
+**rand()** = random number between 1-2
+
+## Updating Each Particle's Position ##
+
+#### formula ####
+This formula is used to update each particle's velocity in the swarm:
+           
+     newPosition[] = present[] + v[]
+     
+#### variables ####
+**v[]** = particle's velocity vector
+
+**present[]** = particle's current position vector      
+ 
+## Decided Variables ##
+
+for this particular project it has been decided that these variables will be used in particle swarm.
+
+**Cognitive Component** = 1.496180
+
+**Social Component** = 1.496180
+
+**Inertial Component** = 0.729844
 
 ![gaPSOGif](pics/gaPSO.gif)
