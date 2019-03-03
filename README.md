@@ -221,9 +221,9 @@ Test Cases for these combination of independent variables would go as follows:
 <br/>
 <br/>
 
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAC7CAMAAACjH4DlAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BMQEAAADCoPVPbQsvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACOBsX1AAEdtddvAAAAAElFTkSuQmCC" width ="410" align = "right">
 
-  
-    TestCases for GA and PSO individually:
+TestCases for GA and PSO individually:
 <img src="pics/controlGroup.PNG">
 
 ### Results ###
