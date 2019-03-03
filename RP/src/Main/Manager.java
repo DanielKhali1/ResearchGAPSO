@@ -35,7 +35,7 @@ public class Manager
 		df.setRoundingMode(RoundingMode.CEILING);
 		int numberOfIterations = 20;
 		
-		File RP = new File("data.csv");
+		File RP = new File("data20.csv");
  		BufferedWriter writer = new BufferedWriter(new FileWriter(RP));
 		writer.write("Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,X,Y\n");
 		writer.close();
