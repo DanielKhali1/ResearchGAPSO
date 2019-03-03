@@ -211,4 +211,4 @@ To prove that this hybridization is viable test cases need to be constructed. Th
 
 Test Cases for these combination of independent variables would go as follows
 
-<img src="pics/tableOfTestCases.png">
+<img src="pics/tableOfTestCases1.png">
