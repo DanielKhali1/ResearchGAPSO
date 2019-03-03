@@ -209,6 +209,11 @@ PSO then GA
 
 To prove that this hybridization is viable test cases need to be constructed. There are 5 seperate independent variables, being the type of function used, how many iterations is given to the algorithm, the percentage of those iterations utilized by the Genetic Algorithm, and the percentage of those iterations utilized by Particle Swarm Optimization. To show a relationship between these independent variables a combination of tests with these independent variables needs to be initiated. This combination of independent variables should generate 2 dependent variables being an X value and Y value. In comparing this data we can hopefully draw a conclusion that the hybridization is more efficient
 
-Test Cases for these combination of independent variables would go as follows
+Test Cases for these combination of independent variables would go as follows:
+(These are cases just for testing the combination of GA and PSO not GA and PSO individually)
 
-<img src="pics/tableOfTestCases1.png">
+<img src="pics/tableOfTestCases1.png" width = "400" align = "left">
+<img src="pics/tableOfTestCasaes2.png" width ="400">
+
+TestCases for GA and PSO individually:
+<img src="pics/controlGroup.png">
