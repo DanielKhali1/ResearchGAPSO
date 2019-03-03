@@ -222,8 +222,8 @@ Test Cases for these combination of independent variables would go as follows:
 <br/>
 
 
-TestCases for GA and PSO individually:
-<img src="pics/controlGroup.PNG">
+<p align = "left"> TestCases for GA and PSO individually:</p>
+<img src="pics/controlGroup.PNG" align ="left">
 
 ### Results ###
 To accurately depict the data each test case will be run 20 times and the results will be averaged.
