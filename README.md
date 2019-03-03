@@ -202,7 +202,13 @@ SS = Range of previous solution size
 
 Using the Algorithm above that implements both a Particle Swarm Optmization and a Genetic Algorithm as well as a changing solution space this is the result:
 
-<img src="pics/PSOnGA.gif">
+<img src="pics/PSOnGA.gif" width="300">
 PSO then GA
 
-### results ###
+### Setting Up Test Cases ###
+
+To prove that this hybridization is viable test cases need to be constructed. There are 5 seperate independent variables, being the type of function used, how many iterations is given to the algorithm, the percentage of those iterations utilized by the Genetic Algorithm, and the percentage of those iterations utilized by Particle Swarm Optimization. To show a relationship between these independent variables a combination of tests with these independent variables needs to be initiated. This combination of independent variables should generate 2 dependent variables being an X value and Y value. In comparing this data we can hopefully draw a conclusion that the hybridization is more efficient
+
+Test Cases for these combination of independent variables would go as follows
+
+<img src="pics/tableOfTestCases.png">
