@@ -177,8 +177,32 @@ The reason behind combining the two algorithms together is because both algorith
 ## Testing both Algorithms Together ##
 The only way it could possibly said that combining both the algorithms together is more efficient then using them on their own would be if the combined hibridization can find a higher quality solution in less iterations then Genetic Algorithms, or PSO can do alone
 
-### How they will be combined ###
+### How GA and PSO will be combined ###
 
-Step 1: Run GA/PSO first for a set amount of iterations.
+**Step 1:** Run GA/PSO first for a set amount of iterations.
 
-Step 2: reduce th 
+**Step 2:** store the position of the best Individual/gBest
+
+**Step 3:** create a new solution space based off the previous solution size with a smaller range
+
+**Step 4:** run the opposite algorithm for the rest of the iterations on the new (smaller) solution space.
+
+when creating a new solution space based off the previous solution size. The size of the original Solution space, and the best individual's X position will be needed. These two values will be plugged into this formula:
+
+    NSS = (X + (SS/2) * 0.05 ) - ( X - ( SS / 2) * 0.05)
+    
+X = X from best Individual
+
+SS = Range of previous solution size
+
+#### Visualization ####
+<img src="pics/combinationOOF.png">
+
+### Implementing Both Algorithms ###
+
+Using the Algorithm above that implements both a Particle Swarm Optmization and a Genetic Algorithm as well as a changing solution space this is the result:
+
+<img src="pics/PSOnGA.gif">
+PSO then GA
+
+### results ###
