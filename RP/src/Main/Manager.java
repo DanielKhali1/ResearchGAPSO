@@ -17,7 +17,6 @@ import GeneticAlgorithm.*;
 
 public class Manager 
 {
-
 	//PSO
 	final static int PSOPopulation = 50;
 	final static double PSOInertia = 0.729844;
@@ -75,7 +74,7 @@ public class Manager
 		
 		double [] globalMinumums = {0.6351, 1.5489, 0.1428, 0};
 		
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < 5; i++)
 		{
 			FunctionGA ga = new FunctionGA(GAPopulation, MutationRate, function);
 			
@@ -94,7 +93,7 @@ public class Manager
 				ga.Evolve();
 			}
 			
-			dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + ga.ChromosomeToDecimalValue(ga.getBestChromosome()) + "," + ga.getFitness(ga.getBestChromosome())+"\n");
+			//dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + ga.ChromosomeToDecimalValue(ga.getBestChromosome()) + "," + ga.getFitness(ga.getBestChromosome())+"\n");
 
 			for(int k = 0; k < ga.getPopulationSize(); k++)
 			{
@@ -107,7 +106,7 @@ public class Manager
 			}
 			
 			System.out.println("moving to swarm");
-			Functions function2 = new Functions(function.getFunctionNumber(), ga.ChromosomeToDecimalValue(ga.getBestChromosome())-2, ga.ChromosomeToDecimalValue(ga.getBestChromosome())+2, -1);
+			Functions function2 = new Functions(function.getFunctionNumber(), ga.ChromosomeToDecimalValue(ga.getBestChromosome())-smallerSolutionSpace(function), ga.ChromosomeToDecimalValue(ga.getBestChromosome())+smallerSolutionSpace(function), -1);
 						
 			Swarm swarm = new Swarm(PSOPopulation, function2, PSOInertia, PSOCognitive, PSOSocial);
 			//		writer.write("Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,X,Y\n");
@@ -150,7 +149,7 @@ public class Manager
 		
 		double [] globalMinumums = {0.6351, 1.5489, 0.1428, 0};
 		
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < 5; i++)
 		{
 			
 			Swarm swarm = new Swarm(PSOPopulation, function, PSOInertia, PSOCognitive, PSOSocial);
@@ -171,9 +170,8 @@ public class Manager
 				System.out.println("writing to file finishing PSO and moving to GA");
 				data+=(test+",GA,"+function+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*PSOiterationPercentage+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].getPosition().getY()+"\n");
 			}*/
-			dat.add(test+",PSO,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + swarm.getBestPosition().getX() + "," + swarm.bestPositionsY() +"\n");
-			
-			Functions function2 = new Functions(function.getFunctionNumber(), swarm.getBestPosition().getX()-2, swarm.getBestPosition().getX()+2, -1);
+			//dat.add(test+",PSO,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + swarm.getBestPosition().getX() + "," + swarm.bestPositionsY() +"\n");
+			Functions function2 = new Functions(function.getFunctionNumber(), swarm.getBestPosition().getX()-smallerSolutionSpace(function), swarm.getBestPosition().getX()+smallerSolutionSpace(function), -1);
 
 			FunctionGA ga = new FunctionGA(GAPopulation, MutationRate, function2);
 			
@@ -199,7 +197,16 @@ public class Manager
 			GAiterationPercentage += .2;
 			PSOiterationPercentage -= .2;
 		}
+		
 	}
-
+	
+	public static double smallerSolutionSpace(Functions function)
+	{
+		double ss = function.getHighRange()-function.getLowRange();
+		
+		double R = (ss/2) * .05;
+		
+		return R;
+	}
 
 }

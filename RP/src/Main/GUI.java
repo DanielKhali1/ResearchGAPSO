@@ -452,6 +452,11 @@ public class GUI extends Application{
 
 					if(swarm.getEpoch() >= (Integer.parseInt(tfPSOiterations.getText()))-1)
 					{
+						if(h==0)
+						{
+							System.out.println("did I work?");
+							bestSolutionPane.getChildren().add(new Line(swarm.getBestPosition().getX()-.25, 50, swarm.getBestPosition().getX()+.25, 50));
+						}
 						h++;
 						bestSolutionPane.getChildren().clear();
 						GAiterationtxt.setText("GA Iteration: " + h);

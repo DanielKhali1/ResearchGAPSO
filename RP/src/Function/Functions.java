@@ -59,41 +59,51 @@ public class Functions
 	
     public double firstFunction(double x)
     {
-        if(x < 0 || x < lowRange || x > highRange)
-        {
-            return 10;
-        }
-        else
+      /*  if(x > highRange)
+        	return highRange;
+        else*/
             return Math.pow(x, (x+5)/4)+Math.cos(9*x*x-Math.sin(x));
     }
     
     public double secondFunction(double x)
     {
-        if(x < lowRange || x > highRange)
+       /* if(x < lowRange)
         {
-            return 10;
+            return lowRange;
         }
-        else
+        else if(x > highRange)
+        {
+        	return highRange;
+        }*/
+        //else
             return (Math.sin(10 * Math.PI * x)/2*x)+Math.pow((x-1), 4);
     }
     
     public double thirdFunction(double x)
     {
-        if(x < lowRange || x > highRange)
+        /*if(x < lowRange)
         {
-            return 10;
+            return lowRange;
         }
-        else
+        else if(x > highRange)
+        {
+        	return highRange;
+        }
+        else*/
             return (x*x)+Math.pow(Math.sin(8*x-9), 4);
     }
     
     public double fourthFunction(double x)
     {
-        if(x < lowRange || x > highRange)
+        /*if(x < lowRange)
         {
-            return 10;
+            return lowRange;
         }
-        else
+        else if(x > highRange)
+        {
+        	return highRange;
+        }
+        else*/
             return x*x + -1* Math.cos(Math.pow((4*x),2));
     }
     
