@@ -216,8 +216,12 @@ Test Cases for these combination of independent variables would go as follows:
 <img src="pics/tableOfTestCasaes2.png" width ="400" align = "right">
 
 
+
 <br/>
-<br/><br/>
+<br/>
+<br/>
+
+
 TestCases for GA and PSO individually:
 <img src="pics/controlGroup.PNG">
 
