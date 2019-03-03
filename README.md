@@ -213,7 +213,7 @@ Test Cases for these combination of independent variables would go as follows:
 (These are cases just for testing the combination of GA and PSO not GA and PSO individually)
 
 <img src="pics/tableOfTestCases1.png" width = "400" align = "left">
-<img src="pics/tableOfTestCasaes2.png" width ="410" align = "right">
+<img src="pics/tableOfTestCasaes2.png" width ="410" >
 
 
 <br/>
@@ -221,7 +221,7 @@ Test Cases for these combination of independent variables would go as follows:
 <br/>
 <br/>
 
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAC7CAMAAACjH4DlAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BMQEAAADCoPVPbQsvoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACOBsX1AAEdtddvAAAAAElFTkSuQmCC">
+
 
 #### TestCases for GA and PSO individually: ####
 <img src="pics/controlGroup.PNG">
