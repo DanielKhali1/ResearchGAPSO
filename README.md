@@ -228,3 +228,7 @@ Test Cases for these combination of independent variables would go as follows:
 
 ### Results ###
 To accurately depict the data each test case will be run 20 times and the results will be averaged.
+
+<img src="pics/Graphyboi.png">
+<img src="pics/averagedResults.PNG">
+
