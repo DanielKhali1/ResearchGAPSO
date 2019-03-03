@@ -215,9 +215,11 @@ Test Cases for these combination of independent variables would go as follows:
 <img src="pics/tableOfTestCases1.png" width = "400" align = "left">
 <img src="pics/tableOfTestCasaes2.png" width ="400" align = "right">
 
+
+<br/>
 <br/><br/>
 TestCases for GA and PSO individually:
 <img src="pics/controlGroup.PNG">
 
 ### Results ###
-To accurately display 
+To accurately depict the data each test case will be run 20 times and the results will be averaged.
