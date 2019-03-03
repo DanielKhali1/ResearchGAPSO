@@ -2,15 +2,14 @@ package Main;
 
 import ParticleSwarm.*;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import Function.*;
 import GeneticAlgorithm.*;
@@ -29,8 +28,11 @@ public class Manager
 	
 	static ArrayList<String> dat = new ArrayList<String>();
 	
+	static DecimalFormat df = new DecimalFormat("#.####");
+	
 	public static void main(String[] args) throws Exception
 	{
+		df.setRoundingMode(RoundingMode.CEILING);
 		int numberOfIterations = 20;
 		
 		File RP = new File("data.csv");
@@ -134,7 +136,7 @@ public class Manager
 				//else
 					//dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+iteration*PSOiterationPercentage+",PSO,"+swarm.getEpoch()+","+k+","+swarm.getParticles()[k].getPosition().getX()+","+swarm.getParticles()[k].eval()+",bestInCurrentpop\n");
 			}
-			dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + swarm.getBestPosition().getX() + "," + swarm.bestPositionsY() +"\n");
+			dat.add(test+",GA,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + df.format(swarm.getBestPosition().getX()) + "," + df.format(swarm.bestPositionsY()) +"\n");
 
 			
 			GAiterationPercentage -= .2;
@@ -186,7 +188,7 @@ public class Manager
 				ga.Evolve();
 				System.out.println("Evolving GA PSO first");
 			}
-			dat.add(test+",PSO,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + ga.ChromosomeToDecimalValue(ga.getBestChromosome()) + "," + ga.getFitness(ga.getBestChromosome()) +"\n");
+			dat.add(test+",PSO,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + df.format(ga.ChromosomeToDecimalValue(ga.getBestChromosome())) + "," + df.format(ga.getFitness(ga.getBestChromosome()))  +"\n");
 						
 			/*for(int k = 0; k < ga.getPopulationSize(); k++)
 			{

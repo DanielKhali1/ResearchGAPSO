@@ -27,7 +27,7 @@ public class GUI extends Application{
 //Attributes
 	TextField tfGAiterations = new TextField("100");
 	TextField tfGAPopulation = new TextField("50");
-	TextField tfGAMutationRate = new TextField(".01");
+	TextField tfGAMutationRate = new TextField(".1");
 	Button btGAStartIterations = new Button("Solve");
 	
 	TextField tfPSOiterations = new TextField("100");
