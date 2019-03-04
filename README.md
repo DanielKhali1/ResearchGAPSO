@@ -236,8 +236,7 @@ To accurately depict the data each test case will be run 20 times and the result
 
 This table in particlular was sorted by which function went first, how many total iterations were executed, and the percentage of GA-PSO. Now to see the relationship between these numbers here are the graphs that display how close the function's Y value was to the global minimum, based off of the percentage of GA-PSO per total iteration.
 
-The X-axis is the percentage of the 
-
+The X-axis is the percentage of the GA-PSO. percentage of GA is on the bottom and percentage of PSO is on the top. looking at the graphs we can immediately see that (with GA first) the more PSO is implemented with GA, the solution gets closer to the global minimum. as we can see in only 20 iterations, GA first with GA at 20%, and PSO at 80%, the new algorithm finds the solution. As the iterations increase the more accurate GA first gets all together. Although it seems that with GA 100% with every iteration the algorithm gets stuck in a local minimum.
 
 <img src="pics/Graphyboi1.png">
 
