@@ -230,10 +230,13 @@ Test Cases for these combination of independent variables would go as follows:
 ### Results ###
 
 
-To accurately depict the data each test case will be run 20 times and the results will be averaged. Here are the averaged values for the function: <img src="pics/function2.PNG"> 
+To accurately depict the data each test case will be run 20 times and the results will be averaged. Here are the averaged values for the function: <img src="pics/function2.PNG"> which has the global minimum value of (1.55, -0.684).
 
 <img src="pics/averagedResults.PNG">
 
+This table in particlular was sorted by which function went first, how many total iterations were executed, and the percentage of GA-PSO. Now to see the relationship between these numbers here are the graphs that display how close the function's Y value was to the global minimum, based off of the percentage of GA-PSO per total iteration.
+
+The X-axis is the percentage of the 
 
 
 <img src="pics/Graphyboi1.png">
