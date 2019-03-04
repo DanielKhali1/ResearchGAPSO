@@ -227,8 +227,10 @@ Test Cases for these combination of independent variables would go as follows:
 <img src="pics/controlGroup.PNG">
 
 ### Results ###
-To accurately depict the data each test case will be run 20 times and the results will be averaged.
-
-<img src="pics/Graphyboi.png">
+To accurately depict the data each test case will be run 20 times and the results will be averaged. Here are the averaged values for only one function:
 <img src="pics/averagedResults.PNG">
+
+
+
+<img src="pics/Graphyboi1.png">
 
