@@ -224,10 +224,14 @@ Test Cases for these combination of independent variables would go as follows:
 
 
 #### TestCases for GA and PSO individually: ####
+
 <img src="pics/controlGroup.PNG">
 
 ### Results ###
-To accurately depict the data each test case will be run 20 times and the results will be averaged. Here are the averaged values for only one function:
+
+
+To accurately depict the data each test case will be run 20 times and the results will be averaged. Here are the averaged values for the function: <img src="pics/function2.PNG"> 
+
 <img src="pics/averagedResults.PNG">
 
 
