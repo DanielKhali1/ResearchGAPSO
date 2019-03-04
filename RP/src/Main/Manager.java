@@ -35,21 +35,24 @@ public class Manager
 		df.setRoundingMode(RoundingMode.CEILING);
 		int numberOfIterations = 20;
 		
-		File RP = new File("data20.csv");
- 		BufferedWriter writer = new BufferedWriter(new FileWriter(RP));
-		writer.write("Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,X,Y\n");
-		writer.close();
-		
-		
 
-			for(int j = 0; j < 5; j++)//5
-			{
-				GAfirstPSO(numberOfIterations, new Functions(2, -5, 5, -1), 1);
- 				PSOfirstGA(numberOfIterations, new Functions(2, -5, 5, -1), 1);
-				numberOfIterations += 20;
-			}
-			numberOfIterations = 20;
-			System.out.println("NEXT FUNCTION");
+		
+		for(int k = 0; k < 20; k++)
+		{
+			dat = new ArrayList<String>();
+			File RP = new File("data"+ (k+1) + ".csv");
+	 		BufferedWriter writer = new BufferedWriter(new FileWriter(RP));
+			writer.write("Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,X,Y\n");
+			writer.close();
+			
+		for(int j = 0; j < 5; j++)//5
+		{
+			GAfirstPSO(numberOfIterations, new Functions(2, -1), 1);
+ 			PSOfirstGA(numberOfIterations, new Functions(2, -1), 1);
+			numberOfIterations += 20;
+		}
+		numberOfIterations = 20;
+		System.out.println("NEXT FUNCTION");
 		
 		
 		for(int i =0; i < dat.size(); i++)
@@ -67,6 +70,8 @@ public class Manager
 				}
 		}
 		
+		}
+		
 	}
 	
 	public static void GAfirstPSO(int iteration, Functions function, int test)
@@ -74,7 +79,7 @@ public class Manager
 		double GAiterationPercentage = 1.0;
 		double PSOiterationPercentage = 0.0;
 		
-		double [] globalMinumums = {0.6351, 1.5489, 0.1428, 0};
+		//double [] globalMinumums = {0.6351, 1.5489, 0.1428, 0};
 		
 		for(int i = 0; i < 5; i++)
 		{
@@ -149,7 +154,7 @@ public class Manager
 		double GAiterationPercentage = 0.0;
 		double PSOiterationPercentage = 1.0;
 		
-		double [] globalMinumums = {0.6351, 1.5489, 0.1428, 0};
+		//double [] globalMinumums = {0.6351, 1.5489, 0.1428, 0};
 		
 		for(int i = 0; i < 5; i++)
 		{

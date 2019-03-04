@@ -21,6 +21,9 @@ public class Swarm
         double infinity = Double.POSITIVE_INFINITY;
         bestPosition = new Vector(infinity, infinity);
         bestEval = Double.POSITIVE_INFINITY;
+        
+        
+        
         this.beginRange = function.getLowRange();
         this.endRange = function.getHighRange();
         particles = initialize();
@@ -44,6 +47,7 @@ public class Swarm
         if (particle.getBestEval() < bestEval) {
             bestPosition = particle.getBestPosition();
             bestEval = particle.getBestEval();
+    		System.out.println(bestPosition);
         }
     }
     
@@ -52,6 +56,7 @@ public class Swarm
     	for(int i = 0; i < particles.length; i++)
     	{
     		particles[i].updatePersonalBest();
+    		
     		updateGlobalBest(particles[i]);
     		updateVelocity(particles[i]);
     		particles[i].updatePosition();

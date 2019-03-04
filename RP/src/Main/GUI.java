@@ -318,7 +318,7 @@ public class GUI extends Application{
 	    		bestSolutionPane.getChildren().clear();
 	    		btGAStartIterations.setDisable(true);
 	    		//	int populationSize, double mutationRate, Functions function
-	    		geneticAlgorithm  = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction, -5,5 , -1));
+	    		geneticAlgorithm  = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction, -1));
 	    		timeline = new Timeline();
 				timeline.setCycleCount((Integer.parseInt(tfGAiterations.getText())));
 				n = 0;
@@ -384,7 +384,7 @@ public class GUI extends Application{
 	    		btPSOStartIterations.setDisable(true);
 	    		
 	    		System.out.println(currentFunction);
-	    		Swarm swarm = new Swarm(Integer.parseInt(tfPSOPopulation.getText()),  new Functions(currentFunction,-10.0, 10.0, -1), Double.parseDouble(tfPSOInertia.getText()), Double.parseDouble(tfPSOCognitive.getText()), Double.parseDouble(tfPSOSocial.getText()));
+	    		Swarm swarm = new Swarm(Integer.parseInt(tfPSOPopulation.getText()),  new Functions(currentFunction, -1), Double.parseDouble(tfPSOInertia.getText()), Double.parseDouble(tfPSOCognitive.getText()), Double.parseDouble(tfPSOSocial.getText()));
 	    		
 	    		timeline = new Timeline();
 				timeline.setCycleCount((Integer.parseInt(tfPSOiterations.getText())));
@@ -409,6 +409,7 @@ public class GUI extends Application{
 						tempcircle.setFill(Color.RED);
 						tempcircle.setLayoutX(260+swarm.getParticles()[i].getPosition().getX()*90);
 						tempcircle.setLayoutY(530+swarm.getParticles()[i].eval()*-90);
+						//System.out.println(tempcircle.getLayoutX() + ", " + tempcircle.getLayoutY());
 						bestSolutionPane.getChildren().add(tempcircle);
 					}
 					
@@ -436,7 +437,7 @@ public class GUI extends Application{
 	    		btPSOStartIterations.setDisable(true);
 	    		
 	    		System.out.println(currentFunction);
-	    		Swarm swarm = new Swarm(Integer.parseInt(tfPSOPopulation.getText()),  new Functions(currentFunction,-10.0, 10.0, -1), Double.parseDouble(tfPSOInertia.getText()), Double.parseDouble(tfPSOCognitive.getText()), Double.parseDouble(tfPSOSocial.getText()));
+	    		Swarm swarm = new Swarm(Integer.parseInt(tfPSOPopulation.getText()),  new Functions(currentFunction, -1), Double.parseDouble(tfPSOInertia.getText()), Double.parseDouble(tfPSOCognitive.getText()), Double.parseDouble(tfPSOSocial.getText()));
 
 	    		geneticAlgorithm  = new FunctionGA(Integer.parseInt(tfGAPopulation.getText()), Double.parseDouble(tfGAMutationRate.getText()), new Functions(currentFunction, swarm.getBestPosition().getX()-.25, swarm.getBestPosition().getX()+.25, -1));
 	    		timeline = new Timeline();
