@@ -37,14 +37,28 @@ public class Manager
 		
 
 		
-		for(int k = 0; k < 20; k++)
+		/*for(int k = 0; k < 20; k++)
 		{
 			dat = new ArrayList<String>();
 			File RP = new File("data"+ (k+1) + ".csv");
 	 		BufferedWriter writer = new BufferedWriter(new FileWriter(RP));
 			writer.write("Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,X,Y\n");
 			writer.close();
-			
+			*/
+		
+		File RP = new File("data"+ (1) + ".csv");
+ 		BufferedWriter writer = new BufferedWriter(new FileWriter(RP));
+		writer.write("Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,X,Y\n");
+		
+		for(int k = 0; k < 20; k++)
+		{
+			dat = new ArrayList<String>();
+
+			if(k == 0)
+			{
+				dat.add("Test,First,Function,Iterations,GA%,PSO%,GA iterations,PSO iterations,X,Y\n");
+			}
+		
 		for(int j = 0; j < 5; j++)//5
 		{
 			GAfirstPSO(numberOfIterations, new Functions(2, -1), 1);
@@ -73,6 +87,7 @@ public class Manager
 		}
 		
 	}
+	//}
 	
 	public static void GAfirstPSO(int iteration, Functions function, int test)
 	{
@@ -182,19 +197,25 @@ public class Manager
 
 			FunctionGA ga = new FunctionGA(GAPopulation, MutationRate, function2);
 			
-			for(int j = 0; j < iteration*GAiterationPercentage; j++)
+			if(GAiterationPercentage > .2)
 			{
-				/*for(int k = 0; k < ga.getPopulationSize(); k++)
+				for(int j = 0; j < iteration*GAiterationPercentage; j++)
 				{
-					System.out.println("writing to file GAit "+k +" actual it " + j + " function "  + i);
-					data+=(test+",GA,"+function+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+"\n");
-				}*/
+					/*for(int k = 0; k < ga.getPopulationSize(); k++)
+					{
+						System.out.println("writing to file GAit "+k +" actual it " + j + " function "  + i);
+						data+=(test+",GA,"+function+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage+","+j+",GA,"+ga.getGeneration()+","+k+","+ga.ChromosomeToDecimalValue(ga.getPopulation()[k])+","+ga.getFitness(ga.getPopulation()[k])+"\n");
+					}*/
 
-				ga.Evolve();
-				System.out.println("Evolving GA PSO first");
+					ga.Evolve();
+					System.out.println("Evolving GA PSO first");
+				}
+				dat.add(test+",PSO,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + df.format(ga.ChromosomeToDecimalValue(ga.getBestChromosome())) + "," + df.format(ga.getFitness(ga.getBestChromosome()))  +"\n");
+			}	
+			else
+			{
+				dat.add(test+",PSO,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + df.format(swarm.getBestPosition().getX()) + "," + df.format(swarm.bestPositionsY()) +"\n");
 			}
-			dat.add(test+",PSO,"+function.getFunctionNumber()+","+ iteration+","+GAiterationPercentage*100+"%,"+PSOiterationPercentage*100+"%,"+iteration*GAiterationPercentage+","+iteration*PSOiterationPercentage + "," + df.format(ga.ChromosomeToDecimalValue(ga.getBestChromosome())) + "," + df.format(ga.getFitness(ga.getBestChromosome()))  +"\n");
-						
 			/*for(int k = 0; k < ga.getPopulationSize(); k++)
 			{
 				System.out.println("writing to file finishing GA");
