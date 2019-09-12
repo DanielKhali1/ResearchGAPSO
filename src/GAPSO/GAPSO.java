@@ -77,6 +77,8 @@ public abstract class GAPSO
 	//updates velocities if PSO if current Algorithm is PSO
 	public void step()
 	{
+		//if the current algorithm is a GA then evolves current population
+		//if the current algorithm is a PSO then will update velocities of population
 		switch(currentAlgorithm)
 		{
 			case GA:	Evolve();
@@ -84,6 +86,7 @@ public abstract class GAPSO
 			case PSO:	updateVelocities();
 				break;	
 		}
+		
 		
 		String firstData = (currentAlgorithm == OA.GA)? generation + "," + eval(bestChromosome()) + "\n" : generation + "," + bestEval+"\n";
 		data.add(firstData);
@@ -94,12 +97,13 @@ public abstract class GAPSO
 		
 		generation++;
 		
-		//System.out.println(bestPosition);
+		//prints current iteration
 		System.out.println(toString());
 
 	}
 	
-	//evolves population for GA
+	
+	//generates a new population for GA
 	public void generatePopulation(int populationSize, int dimension)
 	{
 		double[][] newPopulation = new double[populationSize][dimension];
@@ -115,15 +119,7 @@ public abstract class GAPSO
 		
 		GApopulation = newPopulation;
 	}
-	
-	private double randomBetween(double min, double max)
-	{
-		double range = max - min;
-		double scaled = rand.nextDouble()*range;
-		double shifted = scaled  + min;
-		return shifted;
-	}
-	
+
 	private void Evolve()
 	{
 		double[][] newPopulation = new double[GApopulation.length][dimension];
@@ -173,8 +169,8 @@ public abstract class GAPSO
 		{
 			if(mutationRate >= Math.random())
 			{
-				int randomboi = rand.nextInt(2);
-				switch(randomboi)
+				int random = rand.nextInt(2);
+				switch(random)
 				{
 				case 0: newChild[i] += rand.nextDouble(); 
 					break;
@@ -298,16 +294,9 @@ public abstract class GAPSO
 		
 	}
 	
-	//shrinks the solution space based off of the distance between the furthest particles
-	//changes the algorithm to run again
-	public void transferShrink1()
-	{
-		 
-	}
-	
 	//shrinks the solution space based off of the solution space size,
 	//changes the algorithm to run again
-	public void transferShrink2()
+	public void transferShrink()
 	{
 		
 		double possibleHighRange1 = ( highRange * 0.5 ) + ( (currentAlgorithm == OA.GA) ? bestChromosome()[0] : bestPosition.clone().getDimensions()[0] );
@@ -335,7 +324,6 @@ public abstract class GAPSO
 			break;
 			
 			case PSO: 
-				
 				
 				generatePopulation(populationSize, dimension);
 				
@@ -467,7 +455,15 @@ public abstract class GAPSO
 		}
 	}
 
+	//---- Utility ----------//
 	
+	private double randomBetween(double min, double max)
+	{
+		double range = max - min;
+		double scaled = rand.nextDouble()*range;
+		double shifted = scaled  + min;
+		return shifted;
+	}
 	
 	//-------------- getters ----------------//
 	public double[][] getGAPopulation() {return GApopulation;}

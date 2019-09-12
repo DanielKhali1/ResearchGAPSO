@@ -12,7 +12,7 @@ public class Manager
 	final static double PSOInertia = 0.729844;
 	final static double PSOCognitive = 1.496180;
 	final static double PSOSocial = 1.496180;
-	final static int population = 20;
+	final static int population = 50;
 	final static double mutationRate = 0.1;
 	final static double highRange = 5.12;
 	final static double lowRange = -5.12;
@@ -31,24 +31,23 @@ public class Manager
 		for(int k = 0; k < repititions; k++)
 		{
 			
-			
 			gaswarm psoga = new gaswarm(OA.PSO, highRange, lowRange, population, mutationRate, PSOSocial,PSOCognitive,PSOInertia, inputs);
-			for(int i = 0; i < totalIterations*.5; i++)
+			for(int i = 0; i < totalIterations*.1; i++)
 			{
 				psoga.step();
 			}
 			psoga.transferSwitch();		
 			
-			for(int i = 0; i < totalIterations*.5; i++)
+			for(int i = 0; i < totalIterations*.9; i++)
 				psoga.step();
 	
 			gaswarm gapso = new gaswarm(OA.GA, highRange, lowRange, population, mutationRate, PSOSocial,PSOCognitive,PSOInertia, inputs);
-			for(int i = 0; i < totalIterations*.5; i++)
+			for(int i = 0; i < totalIterations*.1; i++)
 				gapso.step();
 			
 			psoga.transferSwitch();		
 			
-			for(int i = 0; i < totalIterations*.5; i++)
+			for(int i = 0; i < totalIterations*.9; i++)
 				gapso.step();
 	
 			gaswarm ga = new gaswarm(OA.GA,  highRange, lowRange, population, mutationRate, PSOSocial,PSOCognitive,PSOInertia, inputs);
